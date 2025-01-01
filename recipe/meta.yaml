@@ -1,4 +1,4 @@
-{% set version = "22.07.1" %}
+{% set version = "24.11.0" %}
 
 package:
   name: cuquantum-python
@@ -6,11 +6,11 @@ package:
 
 source:
   url: https://github.com/NVIDIA/cuQuantum/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 0e33a518bd0ed902f0218e5eafbacb5bf1fcf7949bc923308658e35d0dc9f1fe
+  sha256: a4b0965e7193515930542cc558d922e24c1732d8240efde3e622e84d6c4416fe
 
 build:
   number: 0
-  skip: True  # [win or cuda_compiler_version != "11.2" or py < 38]
+  skip: true  # [win or cuda_compiler_version != "11.2" or py < 38]
   script_env:
     - CUQUANTUM_ROOT=$PREFIX
     - CUTENSOR_ROOT=$PREFIX
@@ -25,9 +25,9 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - {{ compiler('cuda') }}
-    - sysroot_linux-64 2.17  # [linux64]
   host:
     - python
     - pip
